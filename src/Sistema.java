@@ -10,7 +10,7 @@ public class Sistema extends JFrame
     
     JLabel lValor1, lValor2, lRes;
     JTextField tfValor1, tfValor2, tfRes;
-    JButton bSoma, bSub, bLimpar, bSair;
+    JButton bSoma, bSub, bMult, bDiv, bLimpar, bSair;
     Calculadora c = new Calculadora();                                      
 
     public Sistema() {
@@ -36,13 +36,21 @@ public class Sistema extends JFrame
         tfRes.setEditable(false); //Tira e edição do campo de texto.
         add(tfRes);
 
-        bSoma = new JButton("Soma");
+        bSoma = new JButton("Somar");
         bSoma.addActionListener(this);
         add(bSoma);
         
-        bSub = new JButton("Subtrai");
+        bSub = new JButton("Subtrair");
         bSub.addActionListener(this);
         add(bSub);
+        
+        bMult = new JButton("Multiplicar");
+        bMult.addActionListener(this);
+        add(bMult);
+
+        bDiv = new JButton("Dividir");
+        bDiv.addActionListener(this);
+        add(bDiv);
         
         bLimpar = new JButton("Limpar");
         bLimpar.addActionListener(this);
@@ -82,6 +90,24 @@ public class Sistema extends JFrame
             tfRes.setText(String.valueOf(res));
         }
        
+        if (ae.getSource() == bMult) {
+            int valor1 = Integer.parseInt(tfValor1.getText());
+            int valor2 = Integer.parseInt(tfValor2.getText());
+
+            int res = c.mult(valor1, valor2);
+
+            tfRes.setText(String.valueOf(res));
+        }
+
+        if (ae.getSource() == bDiv) {
+            double valor1 = Double.valueOf(tfValor1.getText());
+            double valor2 = Double.valueOf(tfValor2.getText());
+
+            double res = c.div(valor1, valor2);
+
+            tfRes.setText(String.valueOf(res));
+        }
+
         if (ae.getSource() == bLimpar) {
             tfValor1.setText(""); // Para limpar a caixa de texto
             tfValor2.setText("");
