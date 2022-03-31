@@ -12,22 +12,26 @@ public class Sistema extends JFrame
     JTextField tfValor1, tfValor2, tfRes;
     JButton bSoma, bSub, bMult, bDiv, bLimpar, bSair;
     Calculadora c = new Calculadora();                                      
+    
 
+    
     public Sistema() {
         setLayout(new FlowLayout());
-        setSize(400, 500);
+        setSize(500, 500);
         setVisible(true);
         setTitle("Sistema");
 
         lValor1 = new JLabel("Valor 1");
         add(lValor1);
         tfValor1 = new JTextField(5);
+        tfValor1.setDocument(new SoNumeros());
         tfValor1.setToolTipText("Digite o Valor 1");
         add(tfValor1);
 
         lValor2 = new JLabel("Valor 2");
         add(lValor2);
         tfValor2 = new JTextField(5);
+        tfValor2.setDocument(new SoNumeros());
         add(tfValor2);
 
         lRes = new JLabel("Resposta");
@@ -112,6 +116,8 @@ public class Sistema extends JFrame
             tfValor1.setText(""); // Para limpar a caixa de texto
             tfValor2.setText("");
             tfRes.setText("");
+            
+            tfValor1.requestFocus();
         }
 
         if (ae.getSource() == bSair) {
