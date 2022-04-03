@@ -11,10 +11,10 @@ public class Sistema extends JFrame
     JLabel lValor1, lValor2, lRes;
     JTextField tfValor1, tfValor2, tfRes;
     JButton bSoma, bSub, bMult, bDiv, bLimpar, bSair;
+    JCheckBox cbListar;
+    JTextArea taListar;
     Calculadora c = new Calculadora();                                      
-    
-
-    
+ 
     public Sistema() {
         setLayout(new FlowLayout());
         setSize(500, 500);
@@ -26,12 +26,14 @@ public class Sistema extends JFrame
         tfValor1 = new JTextField(5);
         tfValor1.setDocument(new SoNumeros());
         tfValor1.setToolTipText("Digite o Valor 1");
+        tfValor1.addActionListener(this);
         add(tfValor1);
 
         lValor2 = new JLabel("Valor 2");
         add(lValor2);
         tfValor2 = new JTextField(5);
         tfValor2.setDocument(new SoNumeros());
+        tfValor2.addActionListener(this);;
         add(tfValor2);
 
         lRes = new JLabel("Resposta");
@@ -63,6 +65,14 @@ public class Sistema extends JFrame
         bSair = new JButton("Sair");
         bSair.addActionListener(this);
         add(bSair);
+
+        cbListar = new JCheckBox("Listar");
+        add(cbListar);
+
+        taListar = new JTextArea(10, 20);
+        taListar.setEditable(false);
+        add(taListar);
+
     }
 
 
@@ -75,41 +85,76 @@ public class Sistema extends JFrame
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        
-        if (ae.getSource() == bSoma) {
-            int valor1 = Integer.parseInt(tfValor1.getText()); // Transforma uma String em int (Em um valor);
-            int valor2 = Integer.parseInt(tfValor2.getText());
-            
-            int res = c.soma(valor1, valor2);            
+        if (ae.getSource() == tfValor1) {
+            tfValor2.requestFocus();
+        }
 
-            tfRes.setText(String.valueOf(res)); //Transforma um  valor em em String;
+        if (ae.getSource() == tfValor2) {
+            tfValor1.requestFocus();
+        }
+
+        if (ae.getSource() == bSoma) {
+            if(tfValor1.getText().length() > 0 && tfValor2.getText().length() > 0 ){
+                int valor1 = Integer.parseInt(tfValor1.getText()); // Transforma uma String em int (Em um valor);
+                int valor2 = Integer.parseInt(tfValor2.getText());
+                
+                int res = c.soma(valor1, valor2);            
+
+                tfRes.setText(String.valueOf(res)); //Transforma um  valor em em String;
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                    "Campo Vazio.", 
+                    "Digite um valor inteiro.", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         if (ae.getSource() == bSub) {
-            int valor1 = Integer.parseInt(tfValor1.getText()); // Transforma uma String em int (Em um valor);
-            int valor2 = Integer.parseInt(tfValor2.getText());
-            
-            int res = c.sub(valor1, valor2);
-            
-            tfRes.setText(String.valueOf(res));
+            if (tfValor1.getText().length() > 0 && tfValor2.getText().length() > 0) {
+                int valor1 = Integer.parseInt(tfValor1.getText()); // Transforma uma String em int (Em um valor);
+                int valor2 = Integer.parseInt(tfValor2.getText());
+
+                int res = c.sub(valor1, valor2);
+
+                tfRes.setText(String.valueOf(res));
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                    "Campo Vazio.", 
+                    "Digite um valor inteiro.", 
+                    JOptionPane.INFORMATION_MESSAGE);    
+            }
         }
        
         if (ae.getSource() == bMult) {
-            int valor1 = Integer.parseInt(tfValor1.getText());
-            int valor2 = Integer.parseInt(tfValor2.getText());
+            if (tfValor1.getText().length() > 0 && tfValor2.getText().length() > 0) {
+                int valor1 = Integer.parseInt(tfValor1.getText());
+                int valor2 = Integer.parseInt(tfValor2.getText());
 
-            int res = c.mult(valor1, valor2);
+                int res = c.mult(valor1, valor2);
 
-            tfRes.setText(String.valueOf(res));
+                tfRes.setText(String.valueOf(res));
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                    "Campo Vazio.", 
+                    "Digite um valor inteiro.", 
+                    JOptionPane.INFORMATION_MESSAGE); 
+            }
         }
 
         if (ae.getSource() == bDiv) {
-            double valor1 = Double.valueOf(tfValor1.getText());
-            double valor2 = Double.valueOf(tfValor2.getText());
+            if (tfValor1.getText().length() > 0 && tfValor2.getText().length() > 0) {
+                double valor1 = Double.valueOf(tfValor1.getText());
+                double valor2 = Double.valueOf(tfValor2.getText());
 
-            double res = c.div(valor1, valor2);
+                double res = c.div(valor1, valor2);
 
-            tfRes.setText(String.valueOf(res));
+                tfRes.setText(String.valueOf(res));
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                    "Campo Vazio.", 
+                    "Digite um valor inteiro.", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         if (ae.getSource() == bLimpar) {
