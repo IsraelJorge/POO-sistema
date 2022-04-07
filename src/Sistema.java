@@ -67,6 +67,7 @@ public class Sistema extends JFrame
         add(bSair);
 
         cbListar = new JCheckBox("Listar");
+        cbListar.addActionListener(this);;
         add(cbListar);
 
         taListar = new JTextArea(10, 20);
@@ -101,6 +102,11 @@ public class Sistema extends JFrame
                 int res = c.soma(valor1, valor2);            
 
                 tfRes.setText(String.valueOf(res)); //Transforma um  valor em em String;
+
+                if (cbListar.isSelected()) {
+                    taListar.setText(taListar.getText() + valor1 + " + " + valor2 + " = " + res + "\n");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, 
                     "Campo Vazio.", 
@@ -117,6 +123,11 @@ public class Sistema extends JFrame
                 int res = c.sub(valor1, valor2);
 
                 tfRes.setText(String.valueOf(res));
+
+                if(cbListar.isSelected()){
+                    taListar.setText(taListar.getText() + valor1 + " - " + valor2 + " = " + res +"\n");
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, 
                     "Campo Vazio.", 
@@ -133,6 +144,11 @@ public class Sistema extends JFrame
                 int res = c.mult(valor1, valor2);
 
                 tfRes.setText(String.valueOf(res));
+
+                if (cbListar.isSelected()) {
+                    taListar.setText(taListar.getText() + valor1 + " * " + valor2 + " = " + res +"\n");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, 
                     "Campo Vazio.", 
@@ -149,6 +165,11 @@ public class Sistema extends JFrame
                 double res = c.div(valor1, valor2);
 
                 tfRes.setText(String.valueOf(res));
+
+                if (cbListar.isSelected()) {
+                    taListar.setText(taListar.getText() + valor1 + " / " + valor2 + " = " + res + "\n");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, 
                     "Campo Vazio.", 
@@ -162,11 +183,17 @@ public class Sistema extends JFrame
             tfValor2.setText("");
             tfRes.setText("");
             
+            taListar.setText("");
+
             tfValor1.requestFocus();
         }
 
         if (ae.getSource() == bSair) {
             System.exit(0);
+        }
+
+        if (ae.getSource() == cbListar) {
+            taListar.setText("");
         }
     }
 }
