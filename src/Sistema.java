@@ -13,6 +13,7 @@ public class Sistema extends JFrame
     JButton bSoma, bSub, bMult, bDiv, bLimpar, bSair;
     JCheckBox cbListar;
     JTextArea taListar;
+    JRadioButton rbDestacar;
     Calculadora c = new Calculadora();                                      
  
     public Sistema() {
@@ -73,6 +74,10 @@ public class Sistema extends JFrame
         taListar = new JTextArea(10, 20);
         taListar.setEditable(false);
         add(taListar);
+
+        rbDestacar = new JRadioButton("Destacar");
+        rbDestacar.addActionListener(this);
+        add(rbDestacar);
 
     }
 
@@ -195,5 +200,21 @@ public class Sistema extends JFrame
         if (ae.getSource() == cbListar) {
             taListar.setText("");
         }
+
+        if (rbDestacar.isSelected()) {
+            taListar.setBackground(Color.YELLOW);
+            tfValor1.setBackground(Color.YELLOW);
+            tfValor2.setBackground(Color.YELLOW);
+            tfRes.setBackground(Color.YELLOW);
+        }
+        
+        if (ae.getSource() == rbDestacar) {
+            taListar.setBackground(Color.WHITE);
+            tfValor1.setBackground(Color.WHITE);
+            tfValor2.setBackground(Color.WHITE);
+            tfRes.setBackground(Color.WHITE);
+        }
+        
+        
     }
 }
