@@ -202,7 +202,7 @@ public class Sistema extends JFrame
             }
         }
 
-        if (ae.getSource() == bLimpar) {
+        if (ae.getSource() == bLimpar || ae.getSource() == miLimpar) {
             tfValor1.setText(""); // Para limpar a caixa de texto
             tfValor2.setText("");
             tfRes.setText("");
@@ -212,7 +212,7 @@ public class Sistema extends JFrame
             tfValor1.requestFocus();
         }
 
-        if (ae.getSource() == bSair) {
+        if (ae.getSource() == bSair || ae.getSource() == miSair) {
             System.exit(0);
         }
 
@@ -234,18 +234,5 @@ public class Sistema extends JFrame
             tfRes.setBackground(Color.WHITE);
         }
         
-        if (ae.getSource() == miLimpar) {
-            tfValor1.setText(""); // Para limpar a caixa de texto
-            tfValor2.setText("");
-            tfRes.setText("");
-            
-            taListar.setText("");
-
-            tfValor1.requestFocus();
-        }
-
-        if (ae.getSource() == miSair) {
-            System.exit(0);
-        }
     }
 }
