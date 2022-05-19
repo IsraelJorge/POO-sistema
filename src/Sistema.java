@@ -14,13 +14,32 @@ public class Sistema extends JFrame
     JCheckBox cbListar;
     JTextArea taListar;
     JRadioButton rbDestacar;
-    Calculadora c = new Calculadora();                                      
+    Calculadora c = new Calculadora();
+    
+    JMenuBar mbBarra;
+    JMenu mArquivo;
+    JMenuItem miLimpar, miSair;
  
     public Sistema() {
         setLayout(new FlowLayout());
         setSize(500, 500);
         setVisible(true);
         setTitle("Sistema");
+
+        miLimpar = new JMenuItem("Limpar");
+        miLimpar.addActionListener(this);
+        
+        miSair = new JMenuItem("Sair");
+        miSair.addActionListener(this);
+        
+        mArquivo = new JMenu("Arquivo");
+        mArquivo.add(miLimpar);
+        mArquivo.addSeparator();
+        mArquivo.add(miSair);
+        
+        mbBarra = new JMenuBar();
+        mbBarra.add(mArquivo);
+        setJMenuBar(mbBarra);
 
         lValor1 = new JLabel("Valor 1");
         add(lValor1);
@@ -215,6 +234,18 @@ public class Sistema extends JFrame
             tfRes.setBackground(Color.WHITE);
         }
         
-        
+        if (ae.getSource() == miLimpar) {
+            tfValor1.setText(""); // Para limpar a caixa de texto
+            tfValor2.setText("");
+            tfRes.setText("");
+            
+            taListar.setText("");
+
+            tfValor1.requestFocus();
+        }
+
+        if (ae.getSource() == miSair) {
+            System.exit(0);
+        }
     }
 }
