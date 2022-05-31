@@ -13,12 +13,12 @@ public class Sistema extends JFrame
     JButton bSoma, bSub, bMult, bDiv, bLimpar, bSair;
     JCheckBox cbListar;
     JTextArea taListar;
-    JRadioButton rbDestacar;
     Calculadora c = new Calculadora();
     
     JMenuBar mbBarra;
-    JMenu mArquivo;
-    JMenuItem miLimpar, miSair;
+    JMenu mArquivo, mDuvidas;
+    JMenuItem miLimpar, miSair, miSobre;
+
  
     public Sistema() {
         setLayout(new FlowLayout());
@@ -31,14 +31,21 @@ public class Sistema extends JFrame
         
         miSair = new JMenuItem("Sair");
         miSair.addActionListener(this);
+
+        miSobre = new JMenuItem("Sobre");
+        miSobre.addActionListener(this);
         
         mArquivo = new JMenu("Arquivo");
         mArquivo.add(miLimpar);
         mArquivo.addSeparator();
         mArquivo.add(miSair);
+
+        mDuvidas = new JMenu("Duvidas");
+        mDuvidas.add(miSobre);
         
         mbBarra = new JMenuBar();
         mbBarra.add(mArquivo);
+        mbBarra.add(mDuvidas);
         setJMenuBar(mbBarra);
 
         lValor1 = new JLabel("Valor 1");
@@ -94,9 +101,7 @@ public class Sistema extends JFrame
         taListar.setEditable(false);
         add(taListar);
 
-        rbDestacar = new JRadioButton("Destacar");
-        rbDestacar.addActionListener(this);
-        add(rbDestacar);
+        
 
     }
 
@@ -220,19 +225,8 @@ public class Sistema extends JFrame
             taListar.setText("");
         }
 
-        if (rbDestacar.isSelected()) {
-            taListar.setBackground(Color.YELLOW);
-            tfValor1.setBackground(Color.YELLOW);
-            tfValor2.setBackground(Color.YELLOW);
-            tfRes.setBackground(Color.YELLOW);
+        if (ae.getSource() == miSobre) {
+            Sobre s = new Sobre();
         }
-        
-        if (ae.getSource() == rbDestacar) {
-            taListar.setBackground(Color.WHITE);
-            tfValor1.setBackground(Color.WHITE);
-            tfValor2.setBackground(Color.WHITE);
-            tfRes.setBackground(Color.WHITE);
-        }
-        
     }
 }
