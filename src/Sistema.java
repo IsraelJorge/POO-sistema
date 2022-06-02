@@ -19,6 +19,10 @@ public class Sistema extends JFrame
     JMenu mArquivo, mDuvidas;
     JMenuItem miLimpar, miSair, miSobre;
 
+    JComboBox cbEstado, cbCidade;
+    String[] ma = { "", "Imperatriz", "Açailândia", "São Luis" };
+    String[] pa = { "", "Belém", "Marabá", "Satarém" };
+    String[] pi = { "", "Canto da Serra", "Bom Jesus", "Floriano" };
  
     public Sistema() {
         setLayout(new FlowLayout());
@@ -101,7 +105,14 @@ public class Sistema extends JFrame
         taListar.setEditable(false);
         add(taListar);
 
-        
+        String[] estado = { "", "Maranhão", "Pará", "Piauí" };
+        cbEstado = new JComboBox(estado);
+        cbEstado.addActionListener(this);
+        add(cbEstado);
+
+        cbCidade = new JComboBox();
+        add(cbCidade);
+
 
     }
 
@@ -227,6 +238,37 @@ public class Sistema extends JFrame
 
         if (ae.getSource() == miSobre) {
             Sobre s = new Sobre();
+        }
+
+        if (ae.getSource() == cbEstado) {
+            switch (cbEstado.getSelectedIndex()) {
+                case 0:
+                    cbCidade.removeAllItems();
+                    break;
+                
+                case 1:
+                    cbCidade.removeAllItems();
+                    for (int i = 0; i <= 3; i++) {
+                        cbCidade.insertItemAt(ma[i], i);
+                    }
+                    break;
+                
+                case 2:
+                    cbCidade.removeAllItems();
+                    for (int i = 0; i <= 3; i++) {
+                        cbCidade.insertItemAt(pa[i], i);
+                    }
+                    break;
+
+                case 3:
+                    cbCidade.removeAllItems();
+                    for (int i = 0; i <= 3; i++) {
+                        cbCidade.insertItemAt(pi[i], i);
+                    }
+                    break;
+                    
+                
+            }
         }
     }
 }
